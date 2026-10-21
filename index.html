@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -14,7 +15,7 @@
         <div class="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
             <div>
                 <h1 class="text-2xl font-bold">Hệ Thống Đào Tạo Nội Bộ</h1>
-                <p class="text-indigo-200 text-xs mt-1">Tự động đồng bộ bài giảng & tài liệu</p>
+                <p class="text-indigo-200 text-xs mt-1">Tự động đồng bộ bài giảng & tài liệu từ Drive</p>
             </div>
             <button onclick="loadCourses()" class="bg-indigo-600 hover:bg-indigo-800 text-white px-3 py-1.5 rounded-lg text-sm transition">
                 <i class="fa-solid fa-arrows-rotate mr-1"></i> Làm mới
@@ -26,7 +27,7 @@
     <main class="max-w-6xl mx-auto px-4 py-8">
         <div id="loading" class="text-center py-20">
             <i class="fa-solid fa-circle-notch fa-spin text-4xl text-indigo-600"></i>
-            <p class="mt-4 text-gray-600 font-medium">Đang tải danh sách khóa học...</p>
+            <p class="mt-4 text-gray-600 font-medium">Đang tự động tải danh sách khóa học...</p>
         </div>
 
         <div id="course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
@@ -62,8 +63,8 @@
     </div>
 
     <script>
-        // DÁN ĐƯỜNG LINK WEB APP BƯỚC 2 VÀO ĐÂY:
-        const API_URL = "DÁN_LINK_WEB_APP_Ở_BƯỚC_2_VÀO_ĐÂY";
+        // Link API chính xác của bạn:
+        const API_URL = "https://script.google.com/macros/s/AKfycbzNdj_xGQOzkWcrexvOGudtU907RD-OYl1nIYiDG1xBypKAu-5CBBGkl-YqFeMLrxZG/exec";
 
         let allCourses = [];
 
@@ -92,7 +93,7 @@
         function renderCourses() {
             const grid = document.getElementById('course-grid');
             if (allCourses.length === 0) {
-                grid.innerHTML = `<p class="col-span-3 text-center text-gray-500 py-10">Chưa có khóa học nào. Hãy tạo thư mục trong Google Drive!</p>`;
+                grid.innerHTML = `<p class="col-span-3 text-center text-gray-500 py-10">Chưa có khóa học nào trong thư mục BABOK. Hãy tạo thư mục con bên trong thư mục BABOK!</p>`;
                 return;
             }
 
@@ -143,28 +144,3 @@
                         </div>
                     </div>
                 `).join('');
-            }
-
-            document.getElementById('modal-list').classList.remove('hidden');
-        }
-
-        function closeListModal() {
-            document.getElementById('modal-list').classList.add('hidden');
-        }
-
-        function openViewer(previewUrl, filename) {
-            document.getElementById('viewer-filename').innerText = filename;
-            document.getElementById('viewer-frame').src = previewUrl;
-            document.getElementById('modal-viewer').classList.remove('hidden');
-        }
-
-        function closeViewer() {
-            document.getElementById('viewer-frame').src = "";
-            document.getElementById('modal-viewer').classList.add('hidden');
-        }
-
-        // Tự động tải danh sách khi mở web
-        loadCourses();
-    </script>
-</body>
-</html>
