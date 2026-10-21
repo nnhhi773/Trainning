@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -144,3 +143,28 @@
                         </div>
                     </div>
                 `).join('');
+            }
+
+            document.getElementById('modal-list').classList.remove('hidden');
+        }
+
+        function closeListModal() {
+            document.getElementById('modal-list').classList.add('hidden');
+        }
+
+        function openViewer(previewUrl, filename) {
+            document.getElementById('viewer-filename').innerText = filename;
+            document.getElementById('viewer-frame').src = previewUrl;
+            document.getElementById('modal-viewer').classList.remove('hidden');
+        }
+
+        function closeViewer() {
+            document.getElementById('viewer-frame').src = "";
+            document.getElementById('modal-viewer').classList.add('hidden');
+        }
+
+        // Tự động tải danh sách khi mở web
+        loadCourses();
+    </script>
+</body>
+</html>
